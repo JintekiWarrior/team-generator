@@ -1,0 +1,17 @@
+{
+  "name": "team-generator",
+  "version": "1.0.0",
+  "description": "An app that generates a software team",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Moe Y",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^27.5.1"
+  }
+}
