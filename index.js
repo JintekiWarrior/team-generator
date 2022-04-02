@@ -47,6 +47,7 @@ const promptManager = (name, id, email) => {
   })
 }
 
+// prompt for employee info and call a function based on what role the user pics.
 promptEmployee()
   .then(data => {
     if (data.role === 'Manager') {
