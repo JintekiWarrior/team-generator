@@ -28,7 +28,11 @@ const promptEmployee = () => {
       messag: 'Select a role for the employee',
       choices: ['Engineer', 'Manager', 'Intern']
     }
-  ])
+  ]).then(data => {
+      if (data.role === 'Manager') {
+        promptManager(data.name, data.id, data.email)
+      }
+  })
 }
 
 const promptManager = (name, id, email) => {
@@ -42,18 +46,30 @@ const promptManager = (name, id, email) => {
   // creates the manager object and pushes it into the employees array
   .then(data => {
     const manager = new Manager(name, id, email, data.officeNumber)
-    console.log(manager)
     employees.push(manager)
+    promptContinue()
+  })
+}
+
+const promptContinue = () => {
+  return inquirer.prompt([
+    {
+      type: 'confirm',
+      name: 'continue',
+      message: 'Would you like to continue adding employees?'
+    }
+  ]).then(data => {
+    if (!data.continue) {
+      console.log(employees)
+      return
+    }
+    console.log(employees)
+    promptEmployee() 
   })
 }
 
 // prompt for employee info and call a function based on what role the user pics.
 promptEmployee()
-  .then(data => {
-    if (data.role === 'Manager') {
-      promptManager(data.name, data.id, data.email)
-    }
-  })
 
 // Last add a prompt to allow user to select a role from a list
 
